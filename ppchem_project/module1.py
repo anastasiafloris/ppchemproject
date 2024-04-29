@@ -47,6 +47,73 @@ def main():
 if __name__ == "__main__":
     main()
 
+#the following code takes the 3D molecular structure of the molecule into account:
+from rdkit import Chem
+from rdkit.Chem import Draw
+from rdkit.Chem import Descriptors
+import matplotlib.pyplot as plt
+
+def validate_smiles(smiles):
+    # Check if the input is a valid SMILES string
+    try:
+        Chem.MolFromSmiles(smiles)
+        return True
+    except:
+        return False
+
+def process_smiles(smiles):
+    # Create a molecule from the SMILES string
+    mol = Chem.MolFromSmiles(smiles)
+
+    if mol is not None:
+        # Add explicit hydrogen atoms
+        mol = Chem.AddHs(mol)
+
+        # Calculate molecular weight
+        mw = Descriptors.MolWt(mol)
+        print("Molecular weight:", mw)
+
+        # Display additional molecular descriptors
+        num_atoms = mol.GetNumAtoms()
+        num_bonds = mol.GetNumBonds()
+        num_rings = Chem.GetSSSR(mol)  # Number of rings
+        print("Number of atoms:", num_atoms)
+        print("Number of bonds:", num_bonds)
+        print("Number of rings:", num_rings)
+
+        # Ask the user how they want to visualize the molecule
+        visualization_option = input("How do you want to visualize the molecule? (2D/3D/Interactive): ").lower()
+        
+        # Draw the molecule based on the user's choice
+        if visualization_option == '2d':
+            Draw.MolToImage(mol).show()
+        elif visualization_option == '3d':
+            from rdkit.Chem import AllChem
+            AllChem.EmbedMolecule(mol)
+            mol_viewer = Chem.Draw.MolToMPL(mol)
+            plt.show()
+        elif visualization_option == 'interactive':
+            import nglview
+            nglview.show_rdkit(mol)
+        else:
+            print("Invalid visualization option. Please choose 2D, 3D, or Interactive.")
+    else:
+        print("Invalid SMILES string")
+
+def main():
+    # Prompt the user to enter a SMILES string
+    smiles = input("Enter the SMILES string of the molecule: ")
+
+    # Validate the SMILES input
+    if validate_smiles(smiles):
+        # Process the SMILES string
+        process_smiles(smiles)
+    else:
+        print("Invalid SMILES string")
+
+if __name__ == "__main__":
+    %matplotlib inline
+    main()
 
 
     
