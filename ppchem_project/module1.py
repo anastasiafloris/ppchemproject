@@ -21,6 +21,32 @@ print(f"The age of the sample is approximately {age:.2f} years.")
 # 4. Data Import and Export: Providing functions to import chemical data from various file formats (e.g., SDF, SMILES) and export results to CSV or other formats.
 # 5. Visualization: Creation of functions to generate plots and visualizations of chemical properties, such as histograms of molecular weights, scatter plots of property distributions, or 3D molecular structures.
 
+# use of RDKit to calculate molecular weight and molecular projection
+from rdkit import Chem
+from rdkit.Chem import Draw
+from rdkit.Chem import Descriptors
+
+def main():
+    # Prompt the user to enter a SMILES string
+    smiles = input("Enter the SMILES string of the molecule: ")
+
+    # Create a molecule from the user's SMILES input
+    mol = Chem.MolFromSmiles(smiles)
+
+    if mol is not None:
+        # Calculate molecular weight
+        mw = Descriptors.MolWt(mol)
+        print("Molecular weight:", mw)
+
+        # Draw the molecule
+        img = Draw.MolToImage(mol)
+        img.show()  # Show the image in an external viewer
+    else:
+        print("Invalid SMILES string")
+
+if __name__ == "__main__":
+    main()
+
 
 
     
