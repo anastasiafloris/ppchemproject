@@ -189,5 +189,84 @@ def main():
 if __name__ == "__main__":
     main()
     
+# the following code enables the 2D as well as interactive visualization at the same time of a molecule. It also displays the molecular weight, number of bonds, molecular formula and number of atoms:
+from rdkit import Chem
+from rdkit.Chem import Draw
+from rdkit.Chem import Descriptors
+from rdkit.Chem import AllChem  # Import AllChem here
+import pandas as pd
+import py3Dmol
+from IPython.display import display
 
+def validate_smiles(smiles):
+    # Check if the input is a valid SMILES string
+    try:
+        Chem.MolFromSmiles(smiles)
+        return True
+    except:
+        return False
 
+def get_molecular_formula(mol):
+    # Calculate molecular formula
+    return Chem.rdMolDescriptors.CalcMolFormula(mol)
+
+def process_smiles(smiles):
+    # Create a molecule from the SMILES string
+    mol = Chem.MolFromSmiles(smiles)
+
+    if mol is not None:
+        # Add explicit hydrogen atoms
+        mol = Chem.AddHs(mol)
+
+        # Calculate molecular weight
+        mw = Descriptors.MolWt(mol)
+
+        # Display additional molecular descriptors
+        num_atoms = mol.GetNumAtoms()
+        num_bonds = mol.GetNumBonds()
+
+        # Embed the molecule to generate conformers
+        AllChem.EmbedMolecule(mol)
+
+        # Generate XYZ block after embedding
+        mol_xyz = Chem.MolToXYZBlock(mol)
+        p = py3Dmol.view(width=400, height=400)
+        p.addModel(mol_xyz, 'xyz')
+        p.setStyle({'stick': {}})
+        p.setBackgroundColor('white')
+        p.zoomTo()
+        p.show()
+
+        # Generate 2D representation and display in Jupyter Lab
+        mol_img = Draw.MolToImage(mol)
+        display(mol_img)
+
+        # Get molecular formula
+        molecular_formula = get_molecular_formula(mol)
+
+        # Create DataFrame for table
+        data = {
+            'Property': ['Molecular Weight', 'Number of Atoms', 'Number of Bonds', 'Molecular Formula'],
+            'Value': [mw, num_atoms, num_bonds, molecular_formula]
+        }
+
+        df = pd.DataFrame(data)
+
+        # Display table
+        display(df)
+    else:
+        print("Invalid SMILES string")
+
+def main():
+    # Prompt the user to enter a SMILES string
+    smiles = input("Enter the SMILES string of the molecule: ")
+
+    # Validate the SMILES input
+    if validate_smiles(smiles):
+        # Process the SMILES string
+        process_smiles(smiles)
+    else:
+        print("Invalid SMILES string")
+
+if __name__ == "__main__":
+    main()
