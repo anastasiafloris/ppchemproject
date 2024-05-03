@@ -115,7 +115,79 @@ if __name__ == "__main__":
     %matplotlib inline
     main()
 
+#interactive molecular projection: 
+from rdkit import Chem
+from rdkit.Chem import Draw
+from rdkit.Chem import Descriptors
+from rdkit.Chem import AllChem  # Import AllChem here
+import py3Dmol
 
+def validate_smiles(smiles):
+    # Check if the input is a valid SMILES string
+    try:
+        Chem.MolFromSmiles(smiles)
+        return True
+    except:
+        return False
+
+def process_smiles(smiles):
+    # Create a molecule from the SMILES string
+    mol = Chem.MolFromSmiles(smiles)
+
+    if mol is not None:
+        # Add explicit hydrogen atoms
+        mol = Chem.AddHs(mol)
+
+        # Calculate molecular weight
+        mw = Descriptors.MolWt(mol)
+        print("Molecular weight:", mw)
+
+        # Display additional molecular descriptors
+        num_atoms = mol.GetNumAtoms()
+        num_bonds = mol.GetNumBonds()
+        num_rings = Chem.GetSSSR(mol)  # Number of rings
+        print("Number of atoms:", num_atoms)
+        print("Number of bonds:", num_bonds)
+        print("Number of rings:", num_rings)
+
+        # Generate 3D coordinates (conformers)
+        AllChem.EmbedMolecule(mol)  # Using AllChem here
+
+        # Ask the user how they want to visualize the molecule
+        visualization_option = input("How do you want to visualize the molecule? (2D/3D/Interactive): ").lower()
+        
+        # Draw the molecule based on the user's choice
+        if visualization_option == '2d':
+            Draw.MolToImage(mol).show()
+        elif visualization_option == '3d':
+            AllChem.EmbedMolecule(mol)  # Embed again if needed
+            mol_viewer = Chem.Draw.MolToMPL(mol)
+        elif visualization_option == 'interactive':
+            xyz = Chem.MolToXYZBlock(mol)
+            p = py3Dmol.view(width=400, height=400)
+            p.addModel(xyz, 'xyz')
+            p.setStyle({'stick': {}})
+            p.setBackgroundColor('white')
+            p.zoomTo()
+            return p.show()
+        else:
+            print("Invalid visualization option. Please choose 2D, 3D, or Interactive.")
+    else:
+        print("Invalid SMILES string")
+
+def main():
+    # Prompt the user to enter a SMILES string
+    smiles = input("Enter the SMILES string of the molecule: ")
+
+    # Validate the SMILES input
+    if validate_smiles(smiles):
+        # Process the SMILES string
+        process_smiles(smiles)
+    else:
+        print("Invalid SMILES string")
+
+if __name__ == "__main__":
+    main()
     
 
 
