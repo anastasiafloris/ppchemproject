@@ -257,7 +257,7 @@ if __name__ == "__main__":
 
 
 
-# Final code, displaying 2D as well as interactive 3D projection. It displays molecular characteristics (Molecular Weight, Number of Atoms, Number of Bonds, Molecular Formula, IUPAC Name, Exact Mass, Monoisotopic Mass) based on a PubChem dataset:
+# FINAL CODE, displaying 2D as well as interactive 3D projection. It displays molecular characteristics (Molecular Weight, Number of Atoms, Number of Bonds, Molecular Formula, IUPAC Name, Exact Mass, Monoisotopic Mass) based on a PubChem dataset:
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import Draw
