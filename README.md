@@ -7,3 +7,4 @@ Extracts additional information about the compound from a PubChem dataset, givin
 The following chemical tools are required: Python, RDKit, pandas, py3Dmol, Jupyter Lab
 The dataset was downloaded at the following URL: https://pubchem.ncbi.nlm.nih.gov/
 To download the chemical tools one may use the following command on their terminal: pip install rdkit pandas py3Dmol
+This package's code is present under "Module 1"
