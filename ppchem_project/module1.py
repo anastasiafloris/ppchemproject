@@ -340,7 +340,7 @@ def main():
     # Validate the SMILES input
     if validate_smiles(smiles):
         # Load the dataset
-        dataset_path = '/Users/anastasiafloris/Downloads/PubChem_compound_list_ntk7AD1LWPdv3VrE2LwT7BjpSok_XaQB3iS_TcU1rUzFLJE.csv'  # Replace with the actual path to your dataset
+        dataset_path = '/path/to/your/dataset.csv'  # Replace with the actual path to your dataset
         df_dataset = pd.read_csv(dataset_path)
 
         # Process the SMILES string
