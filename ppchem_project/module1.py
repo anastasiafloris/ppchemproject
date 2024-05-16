@@ -1,3 +1,4 @@
+
 #calculating the age of a sample using the Carbon-14 isotope knowing that the half life of carbon-14 is 5700 years
     
 
