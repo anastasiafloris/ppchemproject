@@ -14,12 +14,7 @@ print (age)
 
 print(f"The age of the sample is approximately {age:.2f} years.")
 
-# project idea: Create a Python package that allows users to analyze chemical compounds, perform molecular computations, visualize molecular structures, and generate various plots related to chemical properties.
-# 1. Molecular Descriptors Calculation: RDKit to calculate molecular descriptors such as molecular weight, number of atoms, number of bonds, etc.
-# 2. Chemical Similarity Search: use of functions to perform chemical similarity searches based on molecular fingerprints or other similarity metrics.
-# 3. Molecule Drawing: Allows users to draw chemical structures using RDKit and visualize them using matplotlib.
-# 4. Data Import and Export: Providing functions to import chemical data from various file formats (e.g., SDF, SMILES) and export results to CSV or other formats.
-# 5. Visualization: Creation of functions to generate plots and visualizations of chemical properties, such as histograms of molecular weights, scatter plots of property distributions, or 3D molecular structures.
+
 
 # use of RDKit to calculate molecular weight and molecular projection
 from rdkit import Chem
@@ -328,11 +323,11 @@ def process_smiles(smiles, df_dataset):
         # Get molecular formula
         molecular_formula = get_molecular_formula(mol)
 
-        # Extract additional information from dataset
-        smiles = df_dataset.iloc[0]['canonicalsmiles']
-        iupac_name = df_dataset.iloc[0]['iupacname']
-        exact_mass = df_dataset.iloc[0]['exactmass']
-        monoisotopic_mass = df_dataset.iloc[0]['monoisotopicmass']
+        # Extract additional information from dataset based on canonical SMILES
+        row = df_dataset.loc[df_dataset['canonicalsmiles'] == smiles].iloc[0]
+        iupac_name = row['iupacname']
+        exact_mass = row['exactmass']
+        monoisotopic_mass = row['monoisotopicmass']
 
         # Create DataFrame for table
         data = {
