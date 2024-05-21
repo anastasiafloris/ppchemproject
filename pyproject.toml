@@ -74,7 +74,7 @@ no_implicit_reexport = true
 
 # More strict checks for library code
 [[tool.mypy.overrides]]
-module = "ppchemproject"
+module = "src/ppchemproject"
 disallow_untyped_defs = true
 disable_error_code = ["import-untyped"]
 

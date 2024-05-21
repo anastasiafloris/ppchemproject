@@ -8,13 +8,14 @@ from rdkit.Chem import AllChem
 import py3Dmol
 from IPython.display import display
 
-def validate_smiles(smiles):
+def validate_smiles2(smiles):
     # Check if the input is a valid SMILES string
-    try:
-        Chem.MolFromSmiles(smiles)
+    mol = Chem.MolFromSmiles(smiles)
+    if mol==None:
+        return False 
+    else: 
         return True
-    except:
-        return False
+    
 
 def get_molecular_formula(mol):
     # Calculate molecular formula
