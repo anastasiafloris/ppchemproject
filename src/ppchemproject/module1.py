@@ -8,7 +8,7 @@ from rdkit.Chem import AllChem
 import py3Dmol
 from IPython.display import display
 
-def validate_smiles2(smiles):
+def validate_smiles(smiles):
     # Check if the input is a valid SMILES string
     mol = Chem.MolFromSmiles(smiles)
     if mol==None:
