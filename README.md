@@ -9,26 +9,26 @@
 # To install package 🖥️ :
 
 1) To create a conda environment and install the required dependencies for the package:
-- Run the following commands in your terminal:
-• conda create -n molenv python=3.8
-• conda activate molenv
-• conda install -c conda-forge pandas rdkit py3Dmol ipython pytest jupyterlab
+- • Run the following commands in your terminal:
+- conda create -n molenv python=3.8
+- conda activate molenv
+- conda install -c conda-forge pandas rdkit py3Dmol ipython pytest jupyterlab
 
 2) To activate the new environment:
 - Run the following command in your terminal:
-conda activate molenv
+- conda activate molenv
 
 3) To install the package: 
 - Run the following command in your terminal:
-pip install git+https://github.com/anastasiafloris/ppchemproject.git
+- pip install git+https://github.com/anastasiafloris/ppchemproject.git
 
 4) To navigate to the package:
 - Run the following command in your terminal:
-cd ppchemproject
+- cd ppchemproject
 
 5) To open the package in Jupyter Lab:
 - Run the following command in your terminal:
-jupyter lab
+- jupyter lab
 
 # To download the dataset 📊 :
 1) Go to the following URL: https://pubchem.ncbi.nlm.nih.gov/.
