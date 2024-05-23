@@ -9,7 +9,7 @@
 # To install package 🖥️ :
 
 1) To create a conda environment and install the required dependencies for the package:
-- • Run the following commands in your terminal:
+- Run the following commands in your terminal:
 - conda create -n molenv python=3.8
 - conda activate molenv
 - conda install -c conda-forge pandas rdkit py3Dmol ipython pytest jupyterlab
