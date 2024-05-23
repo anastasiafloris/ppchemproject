@@ -1,6 +1,5 @@
 # ppchemproject
 # The following package : 
-<<<<<<< HEAD
 - Validates input SMILES strings for their correctness.
 - Calculates molecular weight, number of atoms, number of bonds, molecular formula.
 - Generates 2D and 3D interactive representations of the molecular structure.
