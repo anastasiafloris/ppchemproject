@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # This python package displays 2D as well as interactive 3D projection. It provides molecular characteristics (Molecular Weight, Number of Atoms, Number of Bonds, Molecular Formula, IUPAC Name, Exact Mass, Monoisotopic Mass) based on a PubChem dataset:
 import pandas as pd
 from rdkit import Chem
@@ -24,37 +23,11 @@ def validate_smiles(smiles):
             return False
         else:
             return True
-=======
-import pandas as pd
-from rdkit import Chem
-from rdkit.Chem import Descriptors, AllChem
-import py3Dmol
-from IPython.display import display
-
-def validate_smiles(smiles: str) -> bool:
-    """
-    Check if the input is a valid SMILES string.
-
-    Parameters
-    ----------
-    smiles : str
-        A text string representing a SMILES notation.
-
-    Returns
-    -------
-    bool
-        True if the input is a valid SMILES string, False otherwise.
-    """
-    try:
-        Chem.MolFromSmiles(smiles)
-        return True
->>>>>>> 62b2a4eeac611047bf8de8759d5848f6ebd16a97
     except:
         return False
 
 def get_molecular_formula(mol):
     """
-<<<<<<< HEAD
     Calculate the molecular formula of a given molecule.
 
     Args:
@@ -62,25 +35,11 @@ def get_molecular_formula(mol):
 
     Returns:
     str: Molecular formula of the molecule.
-=======
-    Calculate molecular formula.
-
-    Parameters
-    ----------
-    mol : RDKit Mol object
-        RDKit Mol object representing the molecule.
-
-    Returns
-    -------
-    str
-        Molecular formula of the molecule.
->>>>>>> 62b2a4eeac611047bf8de8759d5848f6ebd16a97
     """
     return Chem.rdMolDescriptors.CalcMolFormula(mol)
 
 def process_smiles(smiles, df_dataset):
     """
-<<<<<<< HEAD
     Process a SMILES string to extract and display molecular information.
 
     This function validates the SMILES string, generates molecular descriptors,
@@ -92,25 +51,10 @@ def process_smiles(smiles, df_dataset):
 
     Raises:
     ValueError: If the SMILES string is invalid.
-=======
-    Process the SMILES string and display molecular information.
-
-    Parameters
-    ----------
-    smiles : str
-        A text string representing a SMILES notation.
-    df_dataset : pandas DataFrame
-        DataFrame containing additional information about molecules.
-
-    Returns
-    -------
-    None
->>>>>>> 62b2a4eeac611047bf8de8759d5848f6ebd16a97
     """
     # Create a molecule from the SMILES string
     mol = Chem.MolFromSmiles(smiles)
 
-<<<<<<< HEAD
     if mol is None:
         raise ValueError("Invalid SMILES string")
 
@@ -177,54 +121,6 @@ def main():
         df_dataset = pd.read_csv(dataset_path)
 
         # Process the SMILES string
-=======
-    if mol is not None:
-        # Add explicit hydrogen atoms
-        mol = Chem.AddHs(mol)
-
-        # Calculate molecular weight
-        mw = Descriptors.MolWt(mol)
-
-        # Embed the molecule to generate conformers
-        AllChem.EmbedMolecule(mol)
-
-        # Generate XYZ block after embedding
-        mol_xyz = Chem.MolToXYZBlock(mol)
-        p = py3Dmol.view(width=400, height=400)
-        p.addModel(mol_xyz, 'xyz')
-        p.setStyle({'stick': {}})
-        p.setBackgroundColor('white')
-        p.zoomTo()
-        p.show()
-
-        # Get molecular formula
-        molecular_formula = get_molecular_formula(mol)
-
-        # Extract additional information from dataset based on canonical SMILES
-        row = df_dataset.loc[df_dataset['canonicalsmiles'] == smiles].iloc[0]
-        iupac_name = row['iupacname']
-        exact_mass = row['exactmass']
-        monoisotopic_mass = row['monoisotopicmass']
-
-        # Display table
-        display({
-            'Property': ['Molecular Weight', 'Molecular Formula', 'IUPAC Name', 'Exact Mass', 'Monoisotopic Mass'],
-            'Value': [mw, molecular_formula, iupac_name, exact_mass, monoisotopic_mass]
-        })
-    else:
-        print("Invalid SMILES string")
-
-def main():
-    """
-    Main function to process SMILES input and display molecular information.
-    """
-    smiles = input("Enter the SMILES string of the molecule: ")
-    # Load the dataset
-    dataset_path = '/path/to/dataset.csv'
-    df_dataset = pd.read_csv(dataset_path)
-    # Process the SMILES string
-    if validate_smiles(smiles):
->>>>>>> 62b2a4eeac611047bf8de8759d5848f6ebd16a97
         process_smiles(smiles, df_dataset)
     else:
         print("Invalid SMILES string")
