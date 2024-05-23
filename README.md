@@ -31,9 +31,9 @@
 - jupyter lab
 
 # To download the dataset 📊 :
-1) Go to the following URL: https://pubchem.ncbi.nlm.nih.gov/.
+1) Go to the following URL: https://pubchem.ncbi.nlm.nih.gov/#input_type=list&query=AUanftrxv02IZ71-Pwb0Voo9S128Ma6U1LG12M-gp9nPuZs&collection=compound&alias=PubChem%3A%20PubChem%20Compound%20TOC%3A%20Toxicity
 
-2) Download the dataset
+2) Download the dataset as a CSV. file with no compression
 
 3) Copy the dataset pathway: Navigate through Finder, right click, click on option and click on "Copy (...) as pathname".
 
