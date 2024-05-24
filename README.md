@@ -1,4 +1,4 @@
-# 🧪 ppchemproject
+# 🧪 ppchemproject (test)
 # The following package ✨ : 
 - Validates input SMILES strings for their correctness.
 - Calculates molecular weight, number of atoms, number of bonds, molecular formula.
