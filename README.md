@@ -40,8 +40,10 @@
 3) Copy the dataset pathway: Navigate through Finder, right click, click on option and click on "Copy (...) as pathname".
 
 # Run the code 🤓 :
-1) Open the jupyter notebook under "Notebooks"
+1) Open the package module under "src/ppchemproject" and replace the dataset pathway with yours in the "moduleppchem" at line 120 where it says "Replace with the actual path to your dataset"
 
-2) insert the dataset pathway in the code and run the code.
+2) Open the Jupyter Notebook under "Notebooks" and replace the dataset pathway with yours in the Notebook titled "project_notebook" where it is indicated to "Replace with the actual path to your dataset".
+
+3) Run the code.
 
 
