@@ -10,25 +10,30 @@
 
 1) Create a GitHub account at the following URL: https://github.com
 
-2) To create a conda environment and install the required dependencies for the package:
+2) Download and Install Anaconda
+- Navigate to Anaconda's download page: https://www.anaconda.com/download
+- Choose the graphical installer for your operating system and download the adequate one
+- Run the downloaded file and follow the installation instructions.
+  
+3) To create a conda environment and install the required dependencies for the package:
 - Run the following commands in your terminal:
 - conda create -n molenv python=3.8
 - conda activate molenv
 - conda install -c conda-forge pandas rdkit py3Dmol ipython pytest jupyterlab
 
-3) To activate the new environment:
+4) To activate the new environment:
 - Run the following command in your terminal:
 - conda activate molenv
 
-4) To install the package: 
+5) To install the package: 
 - Run the following command in your terminal:
 - pip install git+https://github.com/anastasiafloris/ppchemproject.git
 
-5) To navigate to the package:
+6) To navigate to the package:
 - Run the following command in your terminal:
 - cd ppchemproject
 
-6) To open the package in Jupyter Lab:
+7) To open the package in Jupyter Lab:
 - Run the following command in your terminal:
 - jupyter lab
 
