@@ -13,7 +13,7 @@
 2) Download and Install Anaconda
 - Navigate to Anaconda's download page: https://www.anaconda.com/download
 - Choose the graphical installer for your operating system and download the adequate one
-- Run the downloaded file and follow the installation instructions.
+- Run the downloaded file and follow the installation instructions
   
 3) To create a conda environment and install the required dependencies for the package:
 - Run the following commands in your terminal:
